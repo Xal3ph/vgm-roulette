@@ -1,3 +1,12 @@
+<div style="position: fixed; width: 100%; height: 100%; top: 0; overflow-y:hidden;">
+  <div class="background-sky" style="position: absolute; width: 100%; height: 100%; top: 0; overflow-y:hidden;"></div>
+  <div class="background-clouds-bg" style="position: absolute; width: 100%; height: 100%; top: 0; overflow-y:hidden;"></div>
+  <div class="background-mountains" style="position: absolute; height:80%;"></div>
+  <div #cloudLonely class="background-cloud-lonely" style="position: absolute; height:100%;"></div>
+  <div #clouds3 class="background-clouds3" style="position: absolute; height:95%;"></div>
+  <div #clouds2 class="background-clouds2" style="position: absolute; height:95%;"></div>
+  <div #clouds1 class="background-clouds1-lt" style="position: absolute; height:95%;"></div>
+</div>
 <div class="grid-container">
   <div class="container-fluid">
     <div>
@@ -26,13 +35,13 @@
         </div>
         <mat-card-header *ngIf="game">
           <div mat-card-avatar class="example-header-image"
-            [ngStyle]="{'background-image': 'url(' + game?.Image + ')'}">
+            [ngStyle]="{'background-image': 'url(' + game.Image + ')'}">
           </div>
           <!-- <div>
             <img [src]="game.bannerImage || game.coverImage.extraLarge"/>
           </div> -->
-          <mat-card-title>{{game?.Game}}</mat-card-title>
-          <mat-card-subtitle>{{game?.Platform}}</mat-card-subtitle>
+          <mat-card-title>{{game.Game}}</mat-card-title>
+          <mat-card-subtitle>{{game.Platform}}</mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image [src]="game?.Image" *ngIf="game?.Image">
         <!-- <mat-card-content *ngIf="game?.description" style="text-align: left;">

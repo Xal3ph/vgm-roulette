@@ -113,3 +113,110 @@ $card-padding: 24px;
     height: 16px;
   }
 }
+
+.background-sky{
+  background: url('/assets/sky_lightened.png') 50% 0% no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transform:translatez(0);
+  transform: translatez(0);
+  height: 100%;
+  overflow:hidden;
+}
+
+.background-mountains{
+  background: url('/assets/glacial_mountains_lightened.png') 50% 0% no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transform:translatez(0);
+  transform: translatez(0);
+  width: 100%;
+  overflow:hidden;
+  bottom: 0;
+}
+
+
+.background-clouds1-lt{
+  background: url('/assets/clouds_mg_1_lightened.png') 50% 0% repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transform:translatez(0);
+  transform: translatez(0);
+  width: 100%;
+  overflow:hidden;
+  bottom: 0;
+  opacity: 0.6;
+}
+
+.background-clouds1{
+  background: url('/assets/clouds_mg_1.png') 50% 0% repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transform:translatez(0);
+  transform: translatez(0);
+  width: 100%;
+  overflow:hidden;
+  bottom: 0;
+}
+
+.background-clouds2{
+  background: url('/assets/clouds_mg_2.png') 50% 0% repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transform:translatez(0);
+  transform: translatez(0);
+  width: 100%;
+  overflow:hidden;
+  bottom: 0;
+  opacity: 0.8;
+}
+
+.background-clouds3{
+  background: url('/assets/clouds_mg_3.png') 50% 0% repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transform:translatez(0);
+  transform: translatez(0);
+  width: 100%;
+  overflow:hidden;
+  bottom: 0;
+  opacity: 0.9;
+}
+
+.background-cloud-lonely{
+  background: url('/assets/cloud_lonely.png') 50% 0% repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transform:translatez(0);
+  transform: translatez(0);
+  width: 100%;
+  overflow:hidden;
+  bottom: 0;
+}
+
+.background-clouds-bg{
+  background: url('/assets/clouds_bg.png') 50% 0% no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transform:translatez(0);
+  transform: translatez(0);
+  width: 100%;
+  overflow:hidden;
+  bottom: 0;
+}
