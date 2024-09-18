@@ -51,47 +51,6 @@ $card-padding: 24px;
   transition: top 0.5s ease-in-out, left 0.5s ease-in-out;
 }
 
-.background-electric-grid{
-  background: url(/assets/images/site/game-scenery-sunset-uhdpaper.com-4K-112.jpg) 50% 0% no-repeat fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  -webkit-transform:translatez(0);
-  transform: translatez(0);
-}
-
-.background-composition-1{
-  background: url(/assets/images/site/pexels-cottonbro-7097859.jpg) 50% 0% no-repeat fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  -webkit-transform:translatez(0);
-  transform: translatez(0);
-}
-
-.background-composition-2{
-  background: url(/assets/images/site/pexels-elina-sazonova-3971983.jpg) 50% 0% no-repeat fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  -webkit-transform:translatez(0);
-  transform: translatez(0);
-}
-
-.background-ghibli-1{
-  background: url(/assets/images/site/mjVFo6c.jpeg) 50% 0% no-repeat fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  -webkit-transform:translatez(0);
-  transform: translatez(0);
-}
-
-
 .background-top::before {
   content: "";
   position: absolute;
@@ -115,7 +74,7 @@ $card-padding: 24px;
 }
 
 .background-sky{
-  background: url(/assets/sky_lightened.png) 50% 0% no-repeat fixed;
+  background: url('../../assets/sky_lightened.png') 50% 0% no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -127,7 +86,7 @@ $card-padding: 24px;
 }
 
 .background-mountains{
-  background: url(/assets/glacial_mountains_lightened.png) 50% 0% no-repeat fixed;
+  background: url('/../../assets/glacial_mountains_lightened.png') 50% 0% no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -141,7 +100,7 @@ $card-padding: 24px;
 
 
 .background-clouds1-lt{
-  background: url(/assets/clouds_mg_1_lightened.png) 50% 0% repeat fixed;
+  background: url('/../../assets/clouds_mg_1_lightened.png') 50% 0% repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -155,7 +114,7 @@ $card-padding: 24px;
 }
 
 .background-clouds1{
-  background: url(/assets/clouds_mg_1.png) 50% 0% repeat fixed;
+  background: url('/../../assets/clouds_mg_1.png') 50% 0% repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -168,7 +127,7 @@ $card-padding: 24px;
 }
 
 .background-clouds2{
-  background: url(/assets/clouds_mg_2.png) 50% 0% repeat fixed;
+  background: url('/../../assets/clouds_mg_2.png') 50% 0% repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -182,7 +141,7 @@ $card-padding: 24px;
 }
 
 .background-clouds3{
-  background: url(/assets/clouds_mg_3.png) 50% 0% repeat fixed;
+  background: url('/../../assets/clouds_mg_3.png') 50% 0% repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -196,7 +155,7 @@ $card-padding: 24px;
 }
 
 .background-cloud-lonely{
-  background: url(/assets/cloud_lonely.png) 50% 0% repeat fixed;
+  background: url('/../../assets/cloud_lonely.png') 50% 0% repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -209,7 +168,7 @@ $card-padding: 24px;
 }
 
 .background-clouds-bg{
-  background: url(/assets/clouds_bg.png) 50% 0% no-repeat fixed;
+  background: url('/../../assets/clouds_bg.png') 50% 0% no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
