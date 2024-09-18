@@ -24,7 +24,7 @@
         <div style="position: absolute; right: 1px; top: 0;">
           <button mat-icon-button (click)="rollGame()"><mat-icon>refresh</mat-icon></button>
         </div>
-        <mat-card-header *ngIf="game?.Image">
+        <mat-card-header *ngIf="game">
           <div mat-card-avatar class="example-header-image"
             [ngStyle]="{'background-image': 'url(' + game?.Image + ')'}">
           </div>
