@@ -1,1 +1,82 @@
+@use '@angular/material' as mat;
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.icon-sm {
+  transform: scale(0.7);
+}
+
+.container-fluid {
+  // width: 640px; /* Can be in percentage also. */
+  height: auto;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+}
+
+.grid-container {
+  margin: 20px;
+}
+
+.card {
+  @include mat.elevation-transition();
+  @include mat.elevation(2);
+
+  &:hover {
+    @include mat.elevation(8);
+    cursor: pointer;
+  }
+}
+
+
+.story { /*height: 1000px;*/ padding: 0; margin: 0; width: 100%; max-width: 1920px; position: relative; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.3); border-bottom: 1px solid rgba(0,0,0,0.4); box-shadow: 0 0 50px rgba(0,0,0,0.8);}
+
+
+.primary-lighter {
+  font-size: 0.8em;
+  font-weight: 200;
+  line-height: 2em;
+  // color: mat.get-color-from-palette($theme-primary, 'main');
+}
+
+.fadeOut {
+  opacity: 0;
+  -webkit-transition: opacity 1.0s ease-in-out;
+  -moz-transition: opacity 1.0s ease-in-out;
+  transition: opacity 1.0s ease-in-out;
+}
+.fadeIn {
+  opacity: 1.0;
+  -webkit-transition: opacity 1.0s ease-in-out;
+  -moz-transition: opacity 1.0s ease-in-out;
+  transition: opacity 1.0s ease-in-out;
+}
+
+
+.animateLeftOut {
+  margin-right: -15px;
+  margin-left: 15px;
+  -webkit-transition: 1.0s ease-in-out;
+  -moz-transition: 1.0s ease-in-out;
+  transition: 1.0s ease-in-out;
+}
+.animateLeftIn {
+  margin-right: 0;
+  margin-left: 0;
+  -webkit-transition: 1.0s ease-in-out;
+  -moz-transition: 1.0s ease-in-out;
+  transition: 1.0s ease-in-out;
+}
+
+.mat-button-toggle-label-content{
+  line-height: 0px !important;
+  padding: 12px 10px 10px 10px !important
+}
+
+fa-icon .fa-images path {
+  -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+  filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+}

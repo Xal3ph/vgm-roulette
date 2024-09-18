@@ -1,0 +1,115 @@
+// @use '@angular/material' as mat;
+$card-padding: 24px;
+
+.grid {
+  margin: 0 auto;
+}
+
+/* fluid 5 columns */
+.grid-sizer,
+.grid-item {
+  // width: calc((100%/6) - #{$card-padding});
+  // margin-bottom: $card-padding;
+  width: 250px;
+  // padding: 0 calc(#{$card-padding}/2);
+}
+/* 2 columns wide */
+.grid-item--width2 { width: 30%; }
+
+
+@media screen and (max-width: 600px) {
+  /* fluid 5 columns */
+  .grid-sizer,
+  .grid-item { width: calc(100% - #{$card-padding}); margin-bottom: 8px;}
+  /* 2 columns wide */
+  .grid-item--width2 { width: 100%; }
+}
+
+
+
+
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+.masonry-item {
+  transition: top 0.5s ease-in-out, left 0.5s ease-in-out;
+}
+
+.background-electric-grid{
+  background: url(/assets/images/site/game-scenery-sunset-uhdpaper.com-4K-112.jpg) 50% 0% no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transform:translatez(0);
+  transform: translatez(0);
+}
+
+.background-composition-1{
+  background: url(/assets/images/site/pexels-cottonbro-7097859.jpg) 50% 0% no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transform:translatez(0);
+  transform: translatez(0);
+}
+
+.background-composition-2{
+  background: url(/assets/images/site/pexels-elina-sazonova-3971983.jpg) 50% 0% no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transform:translatez(0);
+  transform: translatez(0);
+}
+
+.background-ghibli-1{
+  background: url(/assets/images/site/mjVFo6c.jpeg) 50% 0% no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transform:translatez(0);
+  transform: translatez(0);
+}
+
+
+.background-top::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.7);
+  // background-image: linear-gradient(180, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1));
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+.game-ref {
+  & img {
+    width: 16px;
+    height: 16px;
+  }
+}
