@@ -20,7 +20,7 @@
         </p>
       </div>
 
-      <mat-card style="max-width: 300px;" *ngIf="game||genreCat">
+      <mat-card style="max-width: 400px;" *ngIf="game||genreCat">
         <div style="position: absolute; right: 1px; top: 0;">
           <button mat-icon-button (click)="rollGame()"><mat-icon>refresh</mat-icon></button>
         </div>
@@ -39,7 +39,7 @@
           <p [innerHTML]="game?.description"></p>
         </mat-card-content> -->
         <mat-card-actions style="text-align: right;">
-          <a mat-button [href]="game?.GameLink" target="_blank" *ngIf="game" class="game-ref"><fa-icon [icon]="['fab', 'wikipedia-w']"></fa-icon> wikipedia</a>
+          <a mat-button [href]="game?.GameLink" target="_blank" *ngIf="game?.GameLink" class="game-ref"><fa-icon [icon]="['fab', 'wikipedia-w']"></fa-icon> wikipedia</a>
         </mat-card-actions>
       </mat-card>
     </div>
