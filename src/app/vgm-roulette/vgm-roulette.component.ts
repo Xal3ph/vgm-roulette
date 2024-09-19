@@ -3,9 +3,11 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/co
 import genresCat from '../../assets/data/genres-categorized.json'
 
 // https://github.com/Elbriga14/EveryVideoGameEver
-import SNESGames from '../../assets/data/SNESGames.json'
 import NESGames from '../../assets/data/NESGames.json'
+import GBAGames from '../../assets/data/GBAGames.json'
 import SegaGenesisGames from '../../assets/data/SegaGenesisGames.json'
+import SNESGames from '../../assets/data/SNESGames.json'
+import GamecubeGames from '../../assets/data/GamecubeGames.json'
 import PS1Games from '../../assets/data/PS1Games.json'
 
 import { MatCardModule } from '@angular/material/card';
@@ -52,7 +54,7 @@ export class VgmRouletteComponent implements OnInit {
 
   
   get games(): Game[] {
-    return [...SNESGames, ...NESGames, ...SegaGenesisGames, ...PS1Games].filter(x => x.GameLink != undefined) as any[]
+    return [...SNESGames, ...NESGames, ...SegaGenesisGames, ...PS1Games, ...GBAGames, ...GamecubeGames].filter(x => x.GameLink != undefined) as any[]
   }
 
   constructor(library: FaIconLibrary, private http: HttpClient, private renderer: Renderer2) {
@@ -72,8 +74,6 @@ export class VgmRouletteComponent implements OnInit {
   getRandomGenreCat(): string {
     const keys = Object.keys(genresCat);
     const index = Math.floor(Math.random()*keys.length);
-    // const cat = keys[index];
-    // return cat === 'Comedy' ? this.getRandomGenreCat() : cat;
     return keys[index];
   }
 
@@ -100,12 +100,10 @@ export class VgmRouletteComponent implements OnInit {
       }
     );
     const wiki = await request.json();
-    console.log(wiki);
     const images = wiki.query?.pages?.[0].images ?? []
     let filename: string | undefined = undefined;
     for(let image of images) {
       const p = image?.title.replaceAll(' ', '_')
-      console.log(p)
       if(![
         "File:Disambig_gray.svg",
         "File:EC1835_C_cut.jpg",
@@ -127,8 +125,6 @@ export class VgmRouletteComponent implements OnInit {
         break;
       }      
     }
-    // let filename = images?.[0].title.replaceAll(' ', '_');
-    // console.log(filename)
     if(filename) {
       const requestImage = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${filename}&prop=imageinfo&iiprop=url&origin=*&format=json&formatversion=2`,
         {
@@ -137,15 +133,7 @@ export class VgmRouletteComponent implements OnInit {
         }
       )
       const wikiImage = await requestImage.json();
-      console.log(wikiImage.query.pages?.[0].imageinfo[0].url)
       game.Image = wikiImage.query.pages?.[0].imageinfo[0].url
-      console.log(game);
-      // await fetch(
-      //   "https://en.wikipedia.org/w/api.php?action=query&titles=San_Francisco&prop=images&imlimit=20&origin=*&format=json&formatversion=2",
-      //   {
-      //     method: "GET"
-      //   }
-      // )
     }
     return game;
   }
@@ -169,15 +157,12 @@ export class VgmRouletteComponent implements OnInit {
 
   private setTimer() {
     setTimeout(() => {
-      // console.log(this.clouds1.nativeElement.style);
       let dt = (new Date().getTime() - this.startTime.getTime())/1000;
-      // let cloud1Width = (10*(dt))%this.background.nativeElement.getBoundingClientRect().width;
       const ratio = this.clouds1.nativeElement.getBoundingClientRect().height / 216;
       let cloud1Width = ((10*(dt))%(384*ratio));
       let cloud2Width = (5*(dt))%(384*ratio);
       let cloud3Width = ((dt))%(384*ratio);
       let cloudLWidth = ((dt))%(384*ratio);
-      // this.renderer.setStyle(this.clouds1.nativeElement, 'transform', `translateX(${ time }px)`);
       this.renderer.setStyle(this.clouds1.nativeElement, 'background-position-x', `${ cloud1Width }px`);
       this.renderer.setStyle(this.clouds2.nativeElement, 'background-position-x', `${ cloud2Width }px`);
       this.renderer.setStyle(this.clouds3.nativeElement, 'background-position-x', `${ cloud3Width }px`);
