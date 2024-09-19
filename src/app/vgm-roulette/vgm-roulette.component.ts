@@ -46,6 +46,7 @@ export class VgmRouletteComponent implements OnInit {
   @ViewChild('clouds2') clouds2!: ElementRef;
   @ViewChild('clouds3') clouds3!: ElementRef;
   @ViewChild('cloudLonely') cloudLonely!: ElementRef;
+  @ViewChild('background') background!: ElementRef;
   startTime = new Date();
   token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxNzU1ZWQzZDFjOWE1MmM3NWZiOGYwYWZhYTZiYjcxMSIsImp0aSI6ImYyN2MyZjkxNjY0ZGY4ZWIwYjNjNzFlODgxMGJhOTg5NzRkMTY0ZDIyNDI0OGI4Njg1ZDI3YmI2MmJiMTIwYmNhMjY1ZDI4YTkwYjJmZjlhIiwiaWF0IjoxNzI2Njg0MDE4LjYyMzM5MSwibmJmIjoxNzI2Njg0MDE4LjYyMzM5NSwiZXhwIjozMzI4MzU5MjgxOC42MjA1ODMsInN1YiI6IjE1NDEyNjQiLCJpc3MiOiJodHRwczovL21ldGEud2lraW1lZGlhLm9yZyIsInJhdGVsaW1pdCI6eyJyZXF1ZXN0c19wZXJfdW5pdCI6NTAwMCwidW5pdCI6IkhPVVIifSwic2NvcGVzIjpbImJhc2ljIl19.jx3-nWrMZP3Q5N6dKnYExfIgo5uKC1-GNNQ16--nnKdpEWdpvTjGhJwOCf4uJKdYGueStRIKzilUdCEQGzPin9_MPvmMjJS5Z16C078P9ybnJ80XsRn-BljA6gWV_5Vr_UNMdptromH_hsW8v0p2RAdZlc20mL_p9lgsUGni0_Q9NgPKew35fD7xeAfzkR0-cLQf2BOSviRUaRnIg8QCfnZcliFGL6Alzo04X8-f_88-ZRpBXBysPywjSAx4sTYQWMsySW4ZwGIXWYOt2HfZ3VtuADtx6TD6GhPMGHD8kM8l7b5LOQPL5q4y2AiWWDpKce3b_6gR7eOBt52F6bKKM1gvl6xL8cJNnJ4-kpw6kjWd3amY5aG2XBOglwKx96TUhE-Glvu37ex3hjKnd5dPNNfaboPcQwyjnYrOo8eYP51QxJ75WqFDOArAx5bpdWtsms-nMV2LqfbhiNoWNaQlmbDpw9gJJvetlD9Kn41xVcNAj0dGDzWLwce_XgfG-V9m5Llm8fHM60SxzoiFJ5KhthDk-BhJV68VrIgQowr2C3EfT78UHT1wvTGpl3jnrWI3VihSuHYTZV6bqbsYokPPOKOQJHeKmOykFyEgbWp1JnHDgmw6IsPNzIbwD7cgaE-7T3WaDimByImOua4GpeGWNfROM02ey1OBiwuYjsLwAnU"
 
@@ -170,10 +171,12 @@ export class VgmRouletteComponent implements OnInit {
     setTimeout(() => {
       // console.log(this.clouds1.nativeElement.style);
       let dt = (new Date().getTime() - this.startTime.getTime())/1000;
-      let cloud1Width = (10*(dt))%this.clouds1.nativeElement.getBoundingClientRect().width;
-      let cloud2Width = (5*(dt))%this.clouds2.nativeElement.getBoundingClientRect().width;
-      let cloud3Width = ((dt))%this.clouds3.nativeElement.getBoundingClientRect().width;
-      let cloudLWidth = ((dt))%this.cloudLonely.nativeElement.getBoundingClientRect().width;
+      // let cloud1Width = (10*(dt))%this.background.nativeElement.getBoundingClientRect().width;
+      const ratio = this.clouds1.nativeElement.getBoundingClientRect().height / 216;
+      let cloud1Width = ((10*(dt))%(384*ratio));
+      let cloud2Width = (5*(dt))%(384*ratio);
+      let cloud3Width = ((dt))%(384*ratio);
+      let cloudLWidth = ((dt))%(384*ratio);
       // this.renderer.setStyle(this.clouds1.nativeElement, 'transform', `translateX(${ time }px)`);
       this.renderer.setStyle(this.clouds1.nativeElement, 'background-position-x', `${ cloud1Width }px`);
       this.renderer.setStyle(this.clouds2.nativeElement, 'background-position-x', `${ cloud2Width }px`);
