@@ -180,13 +180,4 @@ $card-padding: 24px;
   bottom: 0;
 }
 
-// .active{
-//   & .card {
-//     background-color: red;
-//   }
-// }
 
-::ng-deep .active .card {
-  // border: 1px solid red;
-  background-color: rgba(200, 255, 255, 1.0) !important;
-}

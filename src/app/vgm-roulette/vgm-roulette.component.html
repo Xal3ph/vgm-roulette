@@ -17,40 +17,13 @@
       <a mat-flat-button color="primary" (click)="roll()">Let's Go</a>
     </div>
     <div fxLayout="column" fxLayoutAlign="center center" style="margin-top: 50px; text-align: left;">
-      <div *ngIf="genreCat" style="text-align: left;">
-        <p>
-          <b>Music Genre: </b>
-          <span matTooltip="Genre Category"> {{genreCat}}</span>
-          <span *ngIf="genre" style="opacity: 0.8" matTooltip="Genre"> ({{genre}}) </span>
-          <a mat-button color="primary" [href]="'https://en.wikipedia.org/w/index.php?search='+genre.split(' ').join('+')" target="_blank">
-            <fa-icon [icon]="['fab', 'wikipedia-w']"></fa-icon>
-          </a>
-          <button mat-icon-button (click)="rollGenre()"><mat-icon>refresh</mat-icon></button>
-        </p>
+      <div fxLayout="row wrap" fxLayoutGap="8">
+        <genre-card [genre]="genre" *ngFor="let genre of genres" fxFlex.lt-md="100%" fxFlex="32%" (click)="selectedGenre = genre" [ngClass]="selectedGenre==genre? 'active':''"></genre-card>
       </div>
 
-      <mat-card style="max-width: 400px;" *ngIf="game||genreCat">
-        <div style="position: absolute; right: 1px; top: 0;">
-          <button mat-icon-button (click)="rollGame()"><mat-icon>refresh</mat-icon></button>
-        </div>
-        <mat-card-header *ngIf="game">
-          <div mat-card-avatar class="example-header-image"
-            [ngStyle]="{'background-image': 'url(' + game.Image + ')'}">
-          </div>
-          <!-- <div>
-            <img [src]="game.bannerImage || game.coverImage.extraLarge"/>
-          </div> -->
-          <mat-card-title>{{game.Game}}</mat-card-title>
-          <mat-card-subtitle>{{game.Platform}}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image [src]="game?.Image" *ngIf="game?.Image">
-        <!-- <mat-card-content *ngIf="game?.description" style="text-align: left;">
-          <p [innerHTML]="game?.description"></p>
-        </mat-card-content> -->
-        <mat-card-actions style="text-align: right;">
-          <a mat-button [href]="game?.GameLink" target="_blank" *ngIf="game?.GameLink" class="game-ref"><fa-icon [icon]="['fab', 'wikipedia-w']"></fa-icon> wikipedia</a>
-        </mat-card-actions>
-      </mat-card>
+      <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="8" *ngIf="(games)">
+        <game-card [game]="game" *ngFor="let game of games" fxFlex.lt-md="100%" fxFlex="30%" (click)="selectedGame=game" [ngClass]="selectedGame==game? 'active':''"></game-card>
+      </div>
     </div>
   </div>
 </div>

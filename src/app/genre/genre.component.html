@@ -1,0 +1,16 @@
+<mat-card *ngIf="genre.category" style="margin-top: 25px;" class="card">
+  <div style="position: absolute; right: 1px; top: 0;">
+    <button mat-icon-button (click)="roll($event)"><mat-icon>refresh</mat-icon></button>
+  </div>
+  <mat-card-header *ngIf="genre.category">
+    <div mat-card-avatar class="example-header-image"
+      [ngStyle]="{'background-image': 'url(' + getImage() + ')'}">
+    </div>
+    <mat-card-title style="font-size: 1.0em">{{genre.name}}</mat-card-title>
+    <mat-card-subtitle style="font-size: 0.75em">{{genre.category}}</mat-card-subtitle>
+  </mat-card-header>
+  <!-- <img mat-card-image [src]="getImage()" *ngIf="getImage()" fxHide.lt-sm="true"> -->
+  <!-- <mat-card-actions style="text-align: right;">
+    <a mat-button [href]="'https://en.wikipedia.org/w/index.php?search='+genre.name.split(' ').join('+')" target="_blank"><fa-icon [icon]="['fab', 'wikipedia-w']"></fa-icon> wikipedia</a>
+  </mat-card-actions> -->
+</mat-card>
