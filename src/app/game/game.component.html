@@ -6,16 +6,10 @@
     <div mat-card-avatar class="example-header-image"
       [ngStyle]="{'background-image': 'url('+consoleImage+')'}">
     </div>
-    <!-- <div>
-      <img [src]="game.bannerImage || game.coverImage.extraLarge"/>
-    </div> -->
     <mat-card-title style="font-size: 1.0em">{{game.Game.split('•')[0]}}</mat-card-title>
     <mat-card-subtitle style="font-size: 0.8em">{{consoleName}}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image [src]="game.Image" *ngIf="game?.Image">
-  <!-- <mat-card-content style="text-align: left;">
-    <p [innerHTML]="consoleImage"></p>
-  </mat-card-content> -->
   <mat-card-actions style="text-align: right;">
     <a mat-button [href]="game.GameLink" target="_blank" *ngIf="game?.GameLink" class="game-ref"><fa-icon [icon]="['fab', 'wikipedia-w']"></fa-icon> wikipedia</a>
   </mat-card-actions>
