@@ -6,9 +6,6 @@ import { Genre } from "./genre";
   providedIn: 'root'
 })
 export class GenreService {
-  // getRandomGenre(): string {
-  //   return genres[Math.floor(Math.random()*genres.length)];
-  // }
 
   getRandomGenreSub(key: string): string {
     const gc = genresCat as {[key: string]: string[]}
