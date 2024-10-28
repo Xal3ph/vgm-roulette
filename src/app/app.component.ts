@@ -26,18 +26,7 @@ export class AppComponent {
     shareReplay()
   );
   constructor(
-    // public navigation: NavigationService,
     private breakpointObserver: BreakpointObserver,
-    // public authService: AuthService,
-    // public userService: UserService,
-    // private router: Router,
-    // private location: Location,
-    // private matIconRegistry: MatIconRegistry,
-    // private domSanitizer: DomSanitizer,
-    // private http: HttpClient,
-    // private formBuilder: UntypedFormBuilder,
-    // public dialog: MatDialog,
-    // private route: ActivatedRoute
     ) {
 
     }
