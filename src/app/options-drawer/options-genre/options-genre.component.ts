@@ -81,7 +81,6 @@ export class OptionsGenreComponent {
   updateGenre(genre: Selectable, checked: boolean, index?: number) {
     genre.checked = checked
     genre.children?.forEach(c => c.checked = checked)
-    console.log(this.genres)
     this.genres.forEach(g => {
       if(g.children?.some(c => c.name === genre.name) && g.children?.some(c => c.checked)) {
         g.checked = true

@@ -43,6 +43,6 @@ export class GameComponent {
   }
 
   get consoleName() {
-    return this.game.Platform.replace('the ', '');
+    return this.game.Platform.replace(/ *\([^)]*\) */g, "").replace('the ', '');
   }
 }

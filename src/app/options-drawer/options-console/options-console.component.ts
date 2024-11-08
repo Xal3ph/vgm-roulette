@@ -29,7 +29,7 @@ export class OptionsConsoleComponent implements OnInit {
   
   // Available console types
   // platformTypes = ['NES', 'GBA', 'Sega Genesis', 'SNES', 'GameCube', 'PS1'];
-  platformTypes = [... new Set(this.gameService.games.map(g=>g.Platform.replace(/ *\([^)]*\) */g, "")))].sort();
+  platformTypes = [... new Set(this.gameService.games.map(g=>this.platformName(g.Platform).replace(/ *\([^)]*\) */g, "")))].sort();
   
   // Selected filters
   
@@ -69,6 +69,6 @@ export class OptionsConsoleComponent implements OnInit {
   }
 
   platformName(platform: String) {
-    return platform.replace('the ', '');
+    return platform.replace('the ', '').trim();
   }
 }
