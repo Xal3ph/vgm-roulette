@@ -11,7 +11,7 @@ import PS1Games from '../../assets/data/PS1Games.json'
 import PS2Games from '../../assets/data/PS2Games.json'
 import PS3Games from '../../assets/data/PS3Games.json'
 import PS4Games from '../../assets/data/PS4Games.json'
-import SteamGames from '../../assets/data/SteamGames.json'
+// import SteamGames from '../../assets/data/SteamGames.json'
 import SwitchGames from '../../assets/data/SwitchGames.json'
 import WiiGames from '../../assets/data/WiiGames.json'
 import WiiUGames from '../../assets/data/WiiUGames.json'
@@ -51,7 +51,7 @@ export class GameService {
       ...PS4Games,
       ...SegaGenesisGames,
       ...SNESGames,
-      ...SteamGames,
+      // ...SteamGames,
       ...SwitchGames,
       ...WiiGames,
       ...WiiUGames,
