@@ -1,0 +1,36 @@
+<ul style="padding-left: 0px">
+  @for (genre of genres; track genre; let i = $index) {
+    <li style="white-space: nowrap;">
+      <a mat-icon-button (click)="genre.show = !genre.show" style="font-family: 'Courier New', Courier, monospace; vertical-align:middle;">
+        <mat-icon>{{genre.show ? 'expand_more' : 'chevron_right'}}</mat-icon>
+          <!-- @if(genre.show) {
+          +
+          }
+          @else {
+            -
+          } -->
+      </a>
+      <mat-checkbox
+      [checked]="genre.checked"
+      [indeterminate]="partiallyCompleteGenre(genre)"
+      (change)="updateGenre(genre, $event.checked, i)"
+      >
+          {{genre.name}} ({{countCheckedChildren(genre)}})
+      </mat-checkbox>
+    </li>
+    <ul *ngIf="genre.show">
+      @for (subGenre of genre.children; track subGenre; let j = $index) {
+        <li>
+          <mat-checkbox
+          class="example-margin"
+          [checked]="subGenre.checked"
+          [indeterminate]="partiallyCompleteGenre(subGenre)"
+          (change)="updateGenre(subGenre, $event.checked, j)"
+          >
+            {{subGenre.name}}
+          </mat-checkbox>  
+        </li>
+      }
+    </ul>
+  }
+</ul>

@@ -9,12 +9,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, Observable, shareReplay } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { OptionsDrawerComponent } from './options-drawer/options-drawer.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, VgmRouletteComponent, MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule, MatMenuModule],
+  imports: [CommonModule, RouterOutlet, VgmRouletteComponent, OptionsDrawerComponent, MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule, MatMenuModule, MatButtonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

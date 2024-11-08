@@ -1,0 +1,67 @@
+<!-- <div>
+  <br/>
+  <br/>
+  <ul>
+    @for (genre of selectedGenres; track $index) {
+      <li> {{ genre[0] }} </li>
+    }
+  </ul>
+</div> -->
+<!-- 
+
+<section class="example-section">
+  <span class="example-list-section">
+    <mat-checkbox
+      class="example-margin"
+      [checked]="task().completed"
+      [indeterminate]="partiallyComplete()"
+      (change)="update($event.checked)"
+    >
+      {{task().name}}
+    </mat-checkbox>
+  </span>
+  <span class="example-list-section">
+    <ul>
+      @for (subtask of task().subtasks; track subtask; let i = $index) {
+        <li>
+          <mat-checkbox [checked]="subtask.completed" (change)="update($event.checked, i)">
+            {{subtask.name}}
+          </mat-checkbox>
+        </li>
+      }
+    </ul>
+  </span>
+</section> -->
+
+<section style="margin-top: 5em;">
+
+  <mat-accordion class="example-headers-align" multi>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Games </mat-panel-title>
+        <mat-panel-description>
+          ({{consoleTotal}})
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <options-console (consoleTotalChange)="consoleTotal=$event"></options-console>
+  
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Genre </mat-panel-title>
+        <mat-panel-description>
+          ({{genreTotal}})
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <options-genre (genreTotalChange)="genreTotal=$event"></options-genre>
+  
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</section>
+

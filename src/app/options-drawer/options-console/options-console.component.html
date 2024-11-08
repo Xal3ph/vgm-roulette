@@ -1,0 +1,27 @@
+<div>
+  <h3>Select Platforms to Filter Games</h3>
+  <mat-chip-listbox aria-label="Console selection" [multiple]="true">
+    @for (platform of platformTypes; track platform) {
+      <mat-chip-option 
+        [selected]="selectedPlatforms.includes(platform)" 
+        (click)="toggleConsole(platform)"
+        [selectable]="true" 
+        [removable]="true"
+        color="primary" 
+        selectedColor="accent">
+        {{ platformName(platform) }}
+      </mat-chip-option>
+    }
+  </mat-chip-listbox>
+</div>
+
+<div>
+  <h3>Filtered Games <mat-icon (click)="showGames = !showGames">{{showGames ? 'visibility_off' : 'visibility'}}</mat-icon></h3>
+  <ul *ngIf="(showGames)">
+    @for(game of filteredGames; track game) {
+      <li>
+        {{ game.Game }} ({{ platformName(game.Platform) }})
+      </li>
+    }
+  </ul>
+</div>

@@ -7,14 +7,26 @@ import { Genre } from "./genre";
 })
 export class GenreService {
 
+  hash: string = ""
+
+  parentFilter:string[] = []
+  childFilter: string[] = []
+  public where = ([key, value]: [string, string[]]) => this.parentFilter.includes(key) || this.parentFilter.length === 0
+  public whereChildren = (c: string) => this.childFilter.includes(c) || this.parentFilter.length === 0
+
+  get genres() {
+    return Object.fromEntries(Object.entries(genresCat).filter(this.where))
+  }
+
   getRandomGenreSub(key: string): string {
-    const gc = genresCat as {[key: string]: string[]}
-    return gc[key][Math.floor(Math.random()*gc[key].length)];
+    const gc = this.genres as {[key: string]: string[]}
+    var gcFiltered = gc[key].filter(this.whereChildren) ?? []
+    return (gcFiltered)[Math.floor(Math.random()*gcFiltered.length)];
   }
 
   getRandomGenreCat(): string {
-    delete (genresCat as any)['Comedy'];
-    const keys = Object.keys(genresCat);
+    // delete (this.genres as any)['Comedy'];
+    const keys = Object.keys(this.genres);
     const index = Math.floor(Math.random()*keys.length);
     return keys[index];
   }

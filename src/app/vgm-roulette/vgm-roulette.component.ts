@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 // import genres from '../../../assets/data/genres.json'
 
 import { MatCardModule } from '@angular/material/card';
@@ -24,7 +24,7 @@ import { GameComponent } from '../game/game.component';
   templateUrl: './vgm-roulette.component.html',
   styleUrl: './vgm-roulette.component.scss'
 })
-export class VgmRouletteComponent implements OnInit {
+export class VgmRouletteComponent implements OnInit, AfterViewInit {
   genres: Genre[] = []
   games: Game[] = []
   @ViewChild('clouds1') clouds1!: ElementRef;
@@ -66,6 +66,9 @@ export class VgmRouletteComponent implements OnInit {
 
   ngOnInit(): void {
     this.setTimer();
+  }
+
+  ngAfterViewInit(): void {
   }
 
   private setTimer() {
