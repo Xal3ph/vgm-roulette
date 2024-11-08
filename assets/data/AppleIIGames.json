@@ -5256,18 +5256,6 @@
 	  "Genre": null
 	},
 	{
-	  "Game": "Softporn Adventure",
-	  "GameLink": "https://en.wikipedia.org/wiki/Softporn_Adventure",
-	  "Year": 1981,
-	  "Dev": "Chuck Benton",
-	  "DevLink": null,
-	  "Publisher": "On-Line Systems",
-	  "PublisherLink": "https://en.wikipedia.org/wiki/On-Line_Systems",
-	  "Platform": "the Apple II",
-	  "PlatformLink": "https://en.wikipedia.org/wiki/Apple_II",
-	  "Genre": "Text adventure"
-	},
-	{
 	  "Game": "Sokoban",
 	  "GameLink": "https://en.wikipedia.org/wiki/Sokoban",
 	  "Year": 1984,
