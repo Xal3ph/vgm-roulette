@@ -11,11 +11,11 @@ import PS1Games from '../../assets/data/PS1Games.json'
 import PS2Games from '../../assets/data/PS2Games.json'
 import PS3Games from '../../assets/data/PS3Games.json'
 import PS4Games from '../../assets/data/PS4Games.json'
-// import SteamGames from '../../assets/data/SteamGames.json'
+import SteamGames from '../../assets/data/SteamGames.json'
 import SwitchGames from '../../assets/data/SwitchGames.json'
 import WiiGames from '../../assets/data/WiiGames.json'
 import WiiUGames from '../../assets/data/WiiUGames.json'
-// import WindowsGames from '../../assets/data/WindowsGames.json'
+import WindowsGames from '../../assets/data/WindowsGames.json'
 import XBOXGames from '../../assets/data/XBOXGames.json'
 import XBOX360Games from '../../assets/data/XBOX360Games.json'
 import XboxOneGames from '../../assets/data/XboxOneGames.json'
@@ -51,11 +51,11 @@ export class GameService {
       ...PS4Games,
       ...SegaGenesisGames,
       ...SNESGames,
-      // ...SteamGames,
+      ...SteamGames,
       ...SwitchGames,
       ...WiiGames,
       ...WiiUGames,
-      // ...WindowsGames,
+      ...WindowsGames,
       ...XBOXGames,
       ...XBOX360Games,
       ...XboxOneGames,
