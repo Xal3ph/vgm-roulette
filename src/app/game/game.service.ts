@@ -75,6 +75,17 @@ export class GameService {
   }
   filteredGames: Game[] = [];
 
+  async getImagesFromWikipedia(titles: string) {
+    const request = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${titles}&prop=images&imlimit=20&origin=*&format=json&formatversion=2&redirects`,
+      {
+        method: "GET",
+        headers: { 'Authorization': `Bearer ${this.token}`}
+      }
+    );
+    const wiki = await request.json();
+    return wiki
+  }
+
   async getRandomGame(): Promise<Game> {
     const index = Math.floor(Math.random()*this.filteredGames.length);
     const game: Game = await new Promise((resolve) => {
@@ -85,44 +96,29 @@ export class GameService {
     if(!game?.GameLink) {
       return game;
     }
-    const request = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${game.GameLink.split('/').slice(-1)[0]}&prop=images&imlimit=20&origin=*&format=json&formatversion=2`,
-      {
-        method: "GET",
-        headers: { 'Authorization': `Bearer ${this.token}`}
-      }
-    );
-    const wiki = await request.json();
-    const images = wiki.query?.pages?.[0].images ?? []
+    let wiki = await this.getImagesFromWikipedia(game.GameLink.split('/').slice(-1)[0])
+    let images = wiki.query?.pages?.[0].images ?? []
+    const redirect = wiki.query?.redirects?.[0].to;
+    if(images.length == 0 && redirect) {
+      console.log(`redirect: ${redirect}`)
+      wiki = this.getImagesFromWikipedia(redirect)
+      images = wiki.query?.pages?.[0].images ?? []
+      console.log("redirect: " + images);
+    }
     let filename: string | undefined = undefined;
     for(let image of images) {
       const p = image?.title.replaceAll(' ', '_')
       if(![
-        "File:Disambig_gray.svg",
         "File:EC1835_C_cut.jpg",
-        "File:OOjs_UI_icon_edit-ltr-progressive.svg",
-        "File:Star_empty.svg",
-        "File:Star_full.svg",
-        "File:Star_half.svg",
-        "File:Symbol_category_class.svg",
-        "File:Pending-protection-shackle.svg",
-        "File:Wiktionary-logo-en-v2.svg",
-        "File:Basketball_Clipart.svg",
-        "File:Crystal_Clear_app_kedit.svg",
-        "File:Question_book-new.svg",
-        "File:Ambox_important.svg",
-        "File:Edit-clear.svg",
-        "File:Electronic-Arts-Logo.svg",
         "File:Blue_iPod_Nano.jpg",
-        "File:Rubik's_cube_v3.svg",
-        "File:Commons-logo.svg",
         ]
-        .includes(p) && !p.includes("File:Flag") &&  !p.includes("File:Symbol")) {
+        .includes(p) && !p.includes("File:Flag") &&  !p.includes("File:Symbol") && this.endsWithAny(p, [".png", ".webp", ".jpg", ".jpeg", ".bmp", ".avif"])) {
         filename = p
         break;
       }      
     }
     if(filename) {
-      const requestImage = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${filename}&prop=imageinfo&iiprop=url&origin=*&format=json&formatversion=2`,
+      const requestImage = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${filename}&prop=imageinfo&imlimit=50&iiprop=url&origin=*&format=json&formatversion=2`,
         {
           method: "GET",
           headers: { 'Authorization': `Bearer ${this.token}`}
@@ -148,6 +144,15 @@ export class GameService {
       }
     }
     return games
+  }
+
+  endsWithAny(str: string, suffixes: string[]) {
+    for (let suffix of suffixes) {
+      if (str.endsWith(suffix)) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }
