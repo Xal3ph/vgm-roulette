@@ -67,7 +67,6 @@ export class OptionsConsoleComponent implements OnInit {
   }
 
   applyFilter(): void {
-    console.log(this.selectedPlatforms)
     // Filter games by selected consoles
     if (this.selectedPlatforms.length === 0) {
       this.filteredGames = this.games; // No filter, show all games
@@ -77,8 +76,6 @@ export class OptionsConsoleComponent implements OnInit {
       );
     }
     this.consoleTotalChange.emit(`${this.filteredGames.length} / ${this.games.length}`)
-    // console.log(this.selectedPlatforms)
-    // console.log(this.platformTypes)
   }
 
   platformName(platform: String) {

@@ -48,7 +48,6 @@ export class VgmRouletteComponent implements OnInit, AfterViewInit {
     private location: Location
   ) {
     library.addIcons(faWikipediaW);
-    console.log()
   }
 
   clear() {
@@ -71,7 +70,6 @@ export class VgmRouletteComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.setTimer();
     const hash = this.location.path(true).split('#')[1] || '';
-    console.log(hash);
     let parent = "", children: string[], childrenStr = "", platforms = ""
     hash.split('&').forEach( h => {
       switch(h.split('=')[0]) {
@@ -88,15 +86,9 @@ export class VgmRouletteComponent implements OnInit, AfterViewInit {
           break;
       }
     })
-    console.log(`parent: ${parent}`)
-    console.log(`childrenStr: ${childrenStr}`)
-    console.log(`platforms: ${platforms}`)
     parent = urlSafeToBinary(parent)
     children = charArrayToBinaryArray(childrenStr)
     platforms = urlSafeToBinary(platforms)
-    console.log(`parent: ${parent}`)
-    console.log(`children: ${children}`)
-    console.log(`platforms: ${platforms}`)
     this.genreService.loadSaveCode(parent, children)
     this.gameService.loadSaveCode(platforms)
     // this.genreService.parentFilter = 

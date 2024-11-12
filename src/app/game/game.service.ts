@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
+import { binaryToUrlSafe } from "../utils/convert";
 import { Game } from "./game";
 // https://github.com/Elbriga14/EveryVideoGameEver
 import NESGames from '../../assets/data/NESGames.json'
@@ -12,7 +13,6 @@ import PS1Games from '../../assets/data/PS1Games.json'
 import PS2Games from '../../assets/data/PS2Games.json'
 import PS3Games from '../../assets/data/PS3Games.json'
 import PS4Games from '../../assets/data/PS4Games.json'
-import { binaryToUrlSafe } from "../utils/convert";
 // import SteamGames from '../../assets/data/SteamGames.json'
 import SwitchGames from '../../assets/data/SwitchGames.json'
 import WiiGames from '../../assets/data/WiiGames.json'

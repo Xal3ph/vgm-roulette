@@ -71,18 +71,18 @@ export class OptionsGenreComponent {
     this.genreTotalChange.emit(`${this.genreCount} / ${this.genreTotal}`)
 
     this.genreService.childFilter$.subscribe(() => {
-      this.loadGenre([...this.genreService.parentFilter.value, ...this.genreService.childFilter.value])
+      this.loadGenre(this.genreService.parentFilter.value, this.genreService.childFilter.value)
     })
   }
 
-  loadGenre(filter: string[]) {
-    this.genres.forEach(g => {
-      g.checked = filter.includes(g.name)
+  loadGenre(parentFilter: string[], childFilter: string[]) {
+    let x = 0;
+    this.genres.forEach((g) => {
+      g.checked = parentFilter.includes(g.name)
       g.children?.forEach(c => {
-        c.checked = filter.includes(c.name)
+        c.checked = childFilter.includes(c.name)
       })
     })
-    console.log(this.genres)
     this.genreTotalChange.emit(`${this.genreCount} / ${this.genreTotal}`)
   }
 
