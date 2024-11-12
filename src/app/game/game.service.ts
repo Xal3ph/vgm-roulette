@@ -11,6 +11,7 @@ import PS1Games from '../../assets/data/PS1Games.json'
 import PS2Games from '../../assets/data/PS2Games.json'
 import PS3Games from '../../assets/data/PS3Games.json'
 import PS4Games from '../../assets/data/PS4Games.json'
+import { binaryToUrlSafe } from "../utils/convert";
 // import SteamGames from '../../assets/data/SteamGames.json'
 import SwitchGames from '../../assets/data/SwitchGames.json'
 import WiiGames from '../../assets/data/WiiGames.json'
@@ -73,7 +74,9 @@ export class GameService {
       ...DOSGames,
     ].filter(x => x.GameLink != undefined) as any[]
   }
+  platformTypes = [... new Set(this.games.map(g=>this.platformName(g.Platform)))].sort();
   filteredGames: Game[] = [];
+  selectedPlatforms: string[] = [];
 
   async getImagesFromWikipedia(titles: string) {
     const request = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${titles}&prop=images&imlimit=20&origin=*&format=json&formatversion=2&redirects`,
@@ -153,6 +156,29 @@ export class GameService {
       }
     }
     return false;
+  }
+
+  platformName(platform: String) {
+    return platform.replace(/ *\([^)]*\) */g, "").replace('the ', '').trim();
+  }
+
+  get saveCode() {
+    // return this.selectedPlatforms.map(p=>p.replace(/[^A-Z0-9]/g, '')).join(',')
+    const str = binaryToUrlSafe(this.platformTypes.map(g => this.selectedPlatforms.includes(g) ? '1':'0').join(''))
+    return `g=${str}`
+  }
+
+  loadSaveCode(platforms: string) {
+    this.selectedPlatforms = []
+    while(platforms.length < this.platformTypes.length) {
+      platforms = "0" + platforms
+    }
+    for (let i = 0; i < platforms.length; ++i) {
+      if (platforms.charAt(i) == "1") {
+        this.selectedPlatforms.push(this.platformTypes[i])
+      }
+    }
+    console.log(this.selectedPlatforms)
   }
 
 }

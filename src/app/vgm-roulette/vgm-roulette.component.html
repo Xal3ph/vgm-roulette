@@ -16,9 +16,12 @@
     <div>
       <a mat-flat-button color="primary" (click)="roll()">Let's Go</a>
     </div>
+    <div>
+      <a [href]="'./#'+saveCode">{{saveCode}}</a>
+    </div>
     <div fxLayout="column" fxLayoutAlign="center center" style="margin-top: 50px; text-align: left;">
       <div fxLayout="row wrap" fxLayoutGap="8">
-        <genre-card [genre]="genre" *ngFor="let genre of genres" fxFlex.lt-md="100%" fxFlex="32%" (click)="selectedGenre = genre" [ngClass]="selectedGenre==genre? 'active':''"></genre-card>
+        <genre-card [genre]="genre" *ngFor="let genre of genres" fxFlex.lt-md="100%" fxFlex="32%" (click)="selectedGenre=genre" [ngClass]="selectedGenre==genre? 'active':''"></genre-card>
       </div>
 
       <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="8" *ngIf="(games)">

@@ -45,4 +45,9 @@ export class GameComponent {
   get consoleName() {
     return this.game.Platform.replace(/ *\([^)]*\) */g, "").replace('the ', '');
   }
+
+  getFavicon(str: string) {
+    var url = new URL(str);
+    return url.protocol + "//" + url.hostname + "/favicon.ico";
+  }
 }

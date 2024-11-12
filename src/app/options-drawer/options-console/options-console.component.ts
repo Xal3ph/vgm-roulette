@@ -29,11 +29,18 @@ export class OptionsConsoleComponent implements OnInit {
   
   // Available console types
   // platformTypes = ['NES', 'GBA', 'Sega Genesis', 'SNES', 'GameCube', 'PS1'];
-  platformTypes = [... new Set(this.gameService.games.map(g=>this.platformName(g.Platform)))].sort();
+  // platformTypes = [... new Set(this.gameService.games.map(g=>this.platformName(g.Platform)))].sort();
+  platformTypes = this.gameService.platformTypes
   
   // Selected filters
   
-  selectedPlatforms: string[] = [];
+  get selectedPlatforms() {
+    return this.gameService.selectedPlatforms;
+  }
+
+  set selectedPlatforms(selectedPlatforms) {
+    this.gameService.selectedPlatforms = selectedPlatforms;
+  }
 
   constructor(private gameService: GameService) {}
 
@@ -64,9 +71,10 @@ export class OptionsConsoleComponent implements OnInit {
       this.filteredGames = this.games.filter(game => 
         this.selectedPlatforms.some(platform => this.platformName(game.Platform).replace(/ *\([^)]*\) */g, "") === platform.replace(/ *\([^)]*\) */g, ""))
       );
-      console.log(this.filteredGames)
     }
     this.consoleTotalChange.emit(`${this.filteredGames.length} / ${this.games.length}`)
+    console.log(this.selectedPlatforms)
+    console.log(this.platformTypes)
   }
 
   platformName(platform: String) {

@@ -1,16 +1,31 @@
-<mat-card style="margin-top: 25px;" *ngIf="game" class="card">
-  <div style="position: absolute; right: 1px; top: 0;">
-    <button mat-icon-button (click)="roll($event)"><mat-icon>refresh</mat-icon></button>
-  </div>
-  <mat-card-header *ngIf="game">
-    <div mat-card-avatar class="example-header-image"
-      [ngStyle]="{'background-image': 'url('+consoleImage+')'}">
+@if(game) {
+  <mat-card style="margin-top: 25px;" class="card">
+    <div style="position: absolute; right: 1px; top: 0;">
+      <button mat-icon-button (click)="roll($event)"><mat-icon>refresh</mat-icon></button>
     </div>
-    <mat-card-title style="font-size: 1.0em">{{game.Game.split('•')[0]}}</mat-card-title>
-    <mat-card-subtitle style="font-size: 0.8em">{{consoleName}}</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image [src]="game.Image" *ngIf="game?.Image">
-  <mat-card-actions style="text-align: right;">
-    <a mat-button [href]="game.GameLink" target="_blank" *ngIf="game?.GameLink" class="game-ref"><fa-icon [icon]="['fab', 'wikipedia-w']"></fa-icon> wikipedia</a>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"
+        [ngStyle]="{'background-image': 'url('+consoleImage+')'}">
+      </div>
+      <mat-card-title style="font-size: 1.0em">{{game.Game.split('•')[0]}}</mat-card-title>
+      <mat-card-subtitle style="font-size: 0.8em">{{consoleName}}</mat-card-subtitle>
+    </mat-card-header>
+    @if(game.Image) {
+      <img mat-card-image [src]="game.Image" style="max-width:25vw">
+    }
+    <mat-card-actions align="end">
+      @if(game.GameLink != undefined) {
+        <a mat-icon-button [href]="game.GameLink" target="_blank" class="game-ref" (click)="$event.preventDefault()">
+          <img [src]="getFavicon(game.GameLink)"/>
+        </a>
+      }
+      <a mat-icon-button [href]="'https://www.zophar.net/music/search?search='+game.Game.split('•')[0].replaceAll(' ', '+')" target="_blank" class="game-ref">
+        <img src="https://www.zophar.net/images/favicon.ico"/>
+      </a>
+      <a mat-icon-button [href]="'https://downloads.khinsider.com/search?search='+game.Game.split('•')[0].replaceAll(' ', '+')" target="_blank" class="game-ref">
+        <img src="https://downloads.khinsider.com/images/favicon.ico"/>
+      </a>
   </mat-card-actions>
-</mat-card>
+  </mat-card>
+}
+  
