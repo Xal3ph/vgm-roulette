@@ -35,18 +35,21 @@ export class OptionsConsoleComponent implements OnInit {
   // Selected filters
   
   get selectedPlatforms() {
-    return this.gameService.selectedPlatforms;
+    return this.gameService.selectedPlatforms.value;
   }
 
   set selectedPlatforms(selectedPlatforms) {
-    this.gameService.selectedPlatforms = selectedPlatforms;
+    this.gameService.selectedPlatforms.next(selectedPlatforms);
   }
 
   constructor(private gameService: GameService) {}
 
   ngOnInit(): void {
     this.games = this.gameService.games; // Load games from the service
-    this.filteredGames = this.games; // Start with all games displayed
+    // this.filteredGames = this.games; // Start with all games displayed
+    this.gameService.selectedPlatforms$.subscribe(()=>{
+      this.applyFilter();
+    })
     this.consoleTotalChange.emit(`${this.filteredGames.length} / ${this.games.length}`)
   }
 
@@ -64,6 +67,7 @@ export class OptionsConsoleComponent implements OnInit {
   }
 
   applyFilter(): void {
+    console.log(this.selectedPlatforms)
     // Filter games by selected consoles
     if (this.selectedPlatforms.length === 0) {
       this.filteredGames = this.games; // No filter, show all games
@@ -73,8 +77,8 @@ export class OptionsConsoleComponent implements OnInit {
       );
     }
     this.consoleTotalChange.emit(`${this.filteredGames.length} / ${this.games.length}`)
-    console.log(this.selectedPlatforms)
-    console.log(this.platformTypes)
+    // console.log(this.selectedPlatforms)
+    // console.log(this.platformTypes)
   }
 
   platformName(platform: String) {

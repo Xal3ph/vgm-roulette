@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 import { Game } from "./game";
 // https://github.com/Elbriga14/EveryVideoGameEver
 import NESGames from '../../assets/data/NESGames.json'
@@ -76,7 +77,10 @@ export class GameService {
   }
   platformTypes = [... new Set(this.games.map(g=>this.platformName(g.Platform)))].sort();
   filteredGames: Game[] = [];
-  selectedPlatforms: string[] = [];
+
+  selectedPlatforms = new BehaviorSubject<string[]>([])
+  selectedPlatforms$ = this.selectedPlatforms.asObservable();
+
 
   async getImagesFromWikipedia(titles: string) {
     const request = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${titles}&prop=images&imlimit=20&origin=*&format=json&formatversion=2&redirects`,
@@ -89,35 +93,23 @@ export class GameService {
     return wiki
   }
 
-  async getRandomGame(): Promise<Game> {
-    const index = Math.floor(Math.random()*this.filteredGames.length);
-    const game: Game = await new Promise((resolve) => {
-      setTimeout(() =>{
-        resolve(this.filteredGames[index])
-      }, 100)
-    });
-    if(!game?.GameLink) {
-      return game;
-    }
-    let wiki = await this.getImagesFromWikipedia(game.GameLink.split('/').slice(-1)[0])
+  async getImageFromWikipedia(wikiUrl: string) {
+    let wiki = await this.getImagesFromWikipedia(wikiUrl.split('/').slice(-1)[0])
     let images = wiki.query?.pages?.[0].images ?? []
     const redirect = wiki.query?.redirects?.[0].to;
     if(images.length == 0 && redirect) {
-      console.log(`redirect: ${redirect}`)
       wiki = this.getImagesFromWikipedia(redirect)
       images = wiki.query?.pages?.[0].images ?? []
-      console.log("redirect: " + images);
     }
     let filename: string | undefined = undefined;
     for(let image of images) {
       const p = image?.title.replaceAll(' ', '_')
-      if(![
-        "File:EC1835_C_cut.jpg",
-        "File:Blue_iPod_Nano.jpg",
-        ]
-        .includes(p) && !p.includes("File:Flag") &&  !p.includes("File:Symbol") && this.endsWithAny(p, [".png", ".webp", ".jpg", ".jpeg", ".bmp", ".avif"])) {
-        filename = p
-        break;
+      if(!["File:EC1835_C_cut.jpg", "File:Blue_iPod_Nano.jpg"].includes(p)
+        && !p.includes("File:Flag")
+        && !p.includes("File:Symbol")
+        && this.endsWithAny(p, [".png", ".webp", ".jpg", ".jpeg", ".bmp", ".avif"])) {
+          filename = p
+          break;
       }      
     }
     if(filename) {
@@ -128,8 +120,16 @@ export class GameService {
         }
       )
       const wikiImage = await requestImage.json();
-      game.Image = wikiImage.query.pages?.[0].imageinfo[0].url
+      return wikiImage.query.pages?.[0].imageinfo[0].url
     }
+    return;
+  }
+
+  async getRandomGame(): Promise<Game> {
+    const index = Math.floor(Math.random()*this.filteredGames.length);
+    const game: Game = this.filteredGames[index]
+    if(!game?.GameLink) { return game; }
+    game.Image = await this.getImageFromWikipedia(game.GameLink)
     return game;
   }
 
@@ -163,22 +163,20 @@ export class GameService {
   }
 
   get saveCode() {
-    // return this.selectedPlatforms.map(p=>p.replace(/[^A-Z0-9]/g, '')).join(',')
-    const str = binaryToUrlSafe(this.platformTypes.map(g => this.selectedPlatforms.includes(g) ? '1':'0').join(''))
+    const str = binaryToUrlSafe(this.platformTypes.map(g => this.selectedPlatforms.value.includes(g) ? '1':'0').join(''))
     return `g=${str}`
   }
 
   loadSaveCode(platforms: string) {
-    this.selectedPlatforms = []
+    this.selectedPlatforms.next([])
     while(platforms.length < this.platformTypes.length) {
       platforms = "0" + platforms
     }
     for (let i = 0; i < platforms.length; ++i) {
       if (platforms.charAt(i) == "1") {
-        this.selectedPlatforms.push(this.platformTypes[i])
+        this.selectedPlatforms.next([...this.selectedPlatforms.value, this.platformTypes[i]])
       }
     }
-    console.log(this.selectedPlatforms)
   }
 
 }

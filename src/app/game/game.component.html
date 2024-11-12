@@ -11,7 +11,7 @@
       <mat-card-subtitle style="font-size: 0.8em">{{consoleName}}</mat-card-subtitle>
     </mat-card-header>
     @if(game.Image) {
-      <img mat-card-image [src]="game.Image" style="max-width:25vw">
+      <img mat-card-image [src]="game.Image" ngStyle.gt-sm="max-width:25vw">
     }
     <mat-card-actions align="end">
       @if(game.GameLink != undefined) {

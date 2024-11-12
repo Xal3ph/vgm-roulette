@@ -46,7 +46,7 @@ export class OptionsGenreComponent {
   genres: Selectable[] = []
   get genreCount() {
     let _return = 0;
-    if(this.genreService.parentFilter.length === 0) {
+    if(this.genreService.parentFilter.value.length === 0) {
       _return = this.genreTotal
     } else {
       _return = this.genres.map(g=>(g.children?.filter(c=>c.checked) ?? []).length).reduce((prev, curr, i, arr) => {return prev + curr}, 0)
@@ -68,7 +68,22 @@ export class OptionsGenreComponent {
       }
       this.genres.push(p)
     })
-    this.genreTotalChange.emit(`${this.genreCount} / ${this.genreTotal}`)    
+    this.genreTotalChange.emit(`${this.genreCount} / ${this.genreTotal}`)
+
+    this.genreService.childFilter$.subscribe(() => {
+      this.loadGenre([...this.genreService.parentFilter.value, ...this.genreService.childFilter.value])
+    })
+  }
+
+  loadGenre(filter: string[]) {
+    this.genres.forEach(g => {
+      g.checked = filter.includes(g.name)
+      g.children?.forEach(c => {
+        c.checked = filter.includes(c.name)
+      })
+    })
+    console.log(this.genres)
+    this.genreTotalChange.emit(`${this.genreCount} / ${this.genreTotal}`)
   }
 
   partiallyCompleteGenre(genre: Selectable): boolean {
@@ -86,15 +101,15 @@ export class OptionsGenreComponent {
         g.checked = true
       }
     })
-    this.genreService.parentFilter = this.genres.filter(g=>g.checked).map(g=>g.name)
-    this.genreService.childFilter = this.genres.filter(g=>g.checked).map(g=>g.children?.filter(c=>c.checked).map(c=>c.name) ?? []).flat()
+    this.genreService.parentFilter.next(this.genres.filter(g=>g.checked).map(g=>g.name))
+    this.genreService.childFilter.next(this.genres.filter(g=>g.checked).map(g=>g.children?.filter(c=>c.checked).map(c=>c.name) ?? []).flat())
 
     this.genreTotalChange.emit(`${this.genreCount} / ${this.genreTotal}`)
 
   }
 
   countCheckedChildren(s: Selectable) {
-    if(this.genreService.parentFilter.length === 0) {
+    if(this.genreService.parentFilter.value.length === 0) {
       return (s.children ?? []).length
     }
     return (s.children?.filter(s=>s.checked) ?? []).length
