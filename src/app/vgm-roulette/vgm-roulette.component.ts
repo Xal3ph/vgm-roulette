@@ -89,8 +89,10 @@ export class VgmRouletteComponent implements OnInit, AfterViewInit {
     parent = urlSafeToBinary(parent)
     children = charArrayToBinaryArray(childrenStr)
     platforms = urlSafeToBinary(platforms)
-    this.genreService.loadSaveCode(parent, children)
-    this.gameService.loadSaveCode(platforms)
+    this.gameService.games$.subscribe(()=>{
+      this.gameService.loadSaveCode(platforms)
+      this.genreService.loadSaveCode(parent, children)
+    })
     // this.genreService.parentFilter = 
   }
 

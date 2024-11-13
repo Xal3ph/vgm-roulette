@@ -47,10 +47,14 @@ export class OptionsConsoleComponent implements OnInit {
   ngOnInit(): void {
     this.games = this.gameService.games; // Load games from the service
     // this.filteredGames = this.games; // Start with all games displayed
+    this.consoleTotalChange.emit(`${this.filteredGames.length} / ${this.games.value.length}`)
+    this.gameService.games$.subscribe(() => {
+      this.platformTypes = this.gameService.platformTypes
+      this.applyFilter()
+    })
     this.gameService.selectedPlatforms$.subscribe(()=>{
       this.applyFilter();
     })
-    this.consoleTotalChange.emit(`${this.filteredGames.length} / ${this.games.length}`)
   }
 
   toggleConsole(platform: string): void {
@@ -69,13 +73,13 @@ export class OptionsConsoleComponent implements OnInit {
   applyFilter(): void {
     // Filter games by selected consoles
     if (this.selectedPlatforms.length === 0) {
-      this.filteredGames = this.games; // No filter, show all games
+      this.filteredGames = this.games.value; // No filter, show all games
     } else {
-      this.filteredGames = this.games.filter(game => 
-        this.selectedPlatforms.some(platform => this.platformName(game.Platform).replace(/ *\([^)]*\) */g, "") === platform.replace(/ *\([^)]*\) */g, ""))
+      this.filteredGames = this.games.value.filter(game => 
+        this.selectedPlatforms.some(platform => this.platformName(game.Platform).replace(/ *\([^)]*\) */g, "") === platform?.replace(/ *\([^)]*\) */g, ""))
       );
     }
-    this.consoleTotalChange.emit(`${this.filteredGames.length} / ${this.games.length}`)
+    this.consoleTotalChange.emit(`${this.filteredGames.length} / ${this.games.value.length}`)
   }
 
   platformName(platform: String) {
