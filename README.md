@@ -2,6 +2,10 @@
 
 A random video game and music genre discovery tool that helps users explore games across multiple platforms and music genres. The app randomly selects games and music genres based on user-defined filters.
 
+**Live Demo**: [https://xal3ph.github.io/vgm-roulette/](https://xal3ph.github.io/vgm-roulette/)
+
+![VGM Roulette Screenshot](screenshots/screenshot.png)
+
 ## What It Does
 
 VGM Roulette generates random combinations of:
